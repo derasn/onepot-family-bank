@@ -1,0 +1,20 @@
+{
+  "name": "onepot-family-bank",
+  "version": "1.0.0",
+  "description": "OnePot - One family, one pot = No stories. Family Pooled Wallet and Envelope Budgeting System.",
+  "scripts": {
+    "server": "npm --prefix backend run dev",
+    "server:start": "npm --prefix backend start",
+    "db:init": "npm --prefix backend run db:init"
+  },
+  "keywords": [
+    "onepot",
+    "family-banking",
+    "fintech",
+    "envelope-budgeting",
+    "nigeria"
+  ],
+  "author": "OnePot Team",
+  "license": "ISC"
+}
+

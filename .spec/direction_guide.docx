@@ -1,0 +1,104 @@
+Name: OnePot
+Tagline: One family, one pot = No stories
+Description: A single, family bank account where everyone can see the money, contribute to it, and spend from it — but not anyhow. Or again, a central wallet where the family pools money, but with smart buckets and approvals so the money is planned and tracked together, not spent anyhow.
+General idea: The family custodian (or admin) creates an account and gets a special invite link or code to share to the rest of the family. Each of them then joins the account, registering with their own personal details. The parents are made admins and have complete access while the children have restricted access. All members can add whatever percentage of their income they choose to add; One Pot only manages what is put inside (better for privacy). No need to log income, just contribute to the pot.
+What it covers:
+1.  Pooling: Shows who put what. "Dad 200k, Mum 100k..."
+2.  Planning: Splits the 510k into bowls: Rent 200k, Food 150k, School Fees 100k etc.
+3.  Tracking: Every expense must come from a bowl and must be approved. So you always know "We have 30k left for food".
+Features:
+1.	Pooled bank – A centralized family wallet, any member can contribute to the pot, log expenses and the transaction history is available to everyone.
+2.	Financial planner –
+•	Budgeting: bowls (money meant for a particular category). Each bowl has a set amount (limit). Every expense must come from a bowl, and money cannot leave unless approved.
+•	Expense logging: parents make expenses while children make requests that have to be approved by a parent before the funds are released. Three status – pending, approved and rejected.
+•	Dashboard: pie chart (where the money went), bar chart (budget vs actual spend). Spending limits (notification when 80% of a bowl is spent)
+•	Goals: Every member can create a goal. Progress bar to track progress (120k / 200k; 60%)
+•	Reports and notifications: A downloadable periodic report and in-app/email notifications for transactions, missed logging, low bowl balance etc.
+3.	Simulated transactions
+
+Site structure:
+1.	Landing page (before login)
+Headline: "One Pot for the Whole Family. Spend Smarter, together."
+Show 3 icons: Pool Money, Plan Together, Track Everything. 
+CTA: "Create Your Family Pot"
+2.	Dashboard or Home page
+Top: Big cards: 
+- Pot Balance: N250,000	- Total Spent This Month: N80,000	- Total Saved: N50,000
+Middle: 	- Left: Bowls with progress bars [Rent N100k [||||80%] Food N50k [|||60%]]
+- Right: Recent Transactions Table: [Mum - N5k - Food - Today]
+Bottom: Chart: Where did our money go?
+Buttons: Add to Pot, Log Expense
+3.	Bowls (Budgets page): Each bowl is a card with its balance, spent, remaining. Or basic cards with progress bars.
+Button: "Create New Bowl"
+4.	Expenses / Transactions Page: A table like bank statement. Filter by Member, Category, Date. 
+Button: "Log New Expense" + "Request Spending"
+5.	Goals Page: Cards with goals, each with image, amount, progress bar. 
+Button: "New Goal"
+6.	Family Members Page*: List of members with profile pictures, role, total contributed, total spent. Invite button.
+
+More on Budgeting:
+•	There are hardcoded bowls (house rent, school fees, travel, utility, etc)
+•	Parents can edit existing bowls or create more
+•	Parents allocate the pot funds inside bowls (!!options for allocation: manual mode, zero-based, 50-30-20, priority) 
+When someone wants to spend, they request from the particular bowl and their status shows pending. If approved, the requested amount is deducted from the pot and bowl. But if rejected, the balances remain the same.
+However, if the bowl is empty, you can request to borrow from the emergency funds. This also requires admin approval.
+Savings:
+•	Emergency funds: locked. Needs approval from both parents before withdrawal
+•	Goal savings: can be created by anyone but must be approved. Flexible (locked but can be unlocked by both admins). Uses progress bars. Once reached, say something like “your house rent money is complete!” 
+•	Auto savings feature (save 5% of every money contributed to the pot)
+Extras:
+•	The system tracks contributions, not total income, to preserve financial privacy among family members.
+•	The system adopts a Zero-Based Budgeting model where Total Contributions - Total Allocations = 0. This ensures financial discipline
+•	No real bank integration (limitation and recommendation for further work). The current implementation operates as a closed-loop mock banking ledger for demonstration purposes. Real-time bank integration via Open Banking APIs (e.g., Mono) is proposed for future work after regulatory approval.
+•	Zero based: every naira has a job
+•	Priority: start allocating from the most important.
+
+Integration:
+Paystack: contributions
+Mono*: bank account linking and verifications
+Paystack was used for simulated contribution collection, while Mono was used in sandbox mode for bank account linking and transaction enrichment. Real fund movement is simulated; no CBN license is required for academic demonstration.
+
+Database tables:
+1.	Users
+2.	Families
+3.	Family_members
+4.	Contributions
+5.	Bowls
+6.	Expenses
+7.	Approvals
+8.	Goals
+9.	Paystack transactions
+
+What to review/analyse:
+a.	PiggyVest (Nigeria): Closest to you. They have "PiggyBank" for savings and "Flex Naira". Strength: Auto-savings. Weakness: It's individual, not family pooled. No approval workflow.
+b.	Kuda Bank (Nigeria): Digital bank with budgeting. Strength: Real bank, spending insights. Weakness: Not designed for family collaboration, no buckets sharing.
+c.	Goodbudget (USA) - VERY IMPORTANT: This is the father of envelope budgeting. It uses virtual envelopes (buckets). Strength: Perfect bucket system. Weakness: No pooled wallet, manual.
+d.	Mint / YNAB - You Need A Budget (USA): Best budgeting apps in world. Strength: Zero-based budgeting, goals, reports. Weakness: Complex, foreign, not family-centric.
+e.	*How to present in thesis:* Create a table 2.1
+Comparison table:
+Feature | PiggyVest | Kuda | Goodbudget | Your Proposed System (OnePot)
+Pooled Wallet | No | No | No | **Yes**
+Buckets | Partial | Yes | Yes | **Yes + Locked**
+Family Approval | No | No | No | **Yes**
+Goals Savings | Yes | No | Yes | **Yes**
+Gap identified: No existing system combines pooled family wallet with envelope budgeting and approval workflow."
+
+Methodology:
+The Agile iterative model was adopted because the family financial requirements evolve as users interact with the system. The system was developed in sprints (User Auth -> Wallet -> Buckets -> Expenses -> Reports), allowing continuous testing and feedback. OOAD was used for modelling using UML diagrams (Use Case, Class Diagram, ER Diagram).
+
+Chapter one:
+Problem statements:
+1.  Lack of a centralized platform for families to pool and track contributions.
+2.  Lack of transparency in how family funds are spent, leading to mistrust.
+3.  No structured budgeting (bowls) system for family needs like rent, food, school fees.
+4.  Overspending and inability to save for emergency or goals due to poor allocation.
+5.  Existing fintech apps are individual-focused, not family-collaborative.
+
+Chapter two:
+2.1 Introduction
+2.2 Conceptual Review - Explain concepts: Household Finance, Pooled Wallet, Envelope Budgeting, Savings Goals
+2.3 Literature Review - Here you review 8-10 actual papers (2-3 from each Type above). Summarize Author (Year), what they did, what they found, gap.
+2.4 Gap Analysis / Summary - "None combined pooled wallet + envelope budgeting + approval + goals for Nigerian family context"
+
+
+
