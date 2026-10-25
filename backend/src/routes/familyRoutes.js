@@ -3,6 +3,8 @@ const router = express.Router();
 const familyController = require('../controllers/familyController');
 const { authenticate, requireFamily, requireAdmin } = require('../middleware/auth');
 
+router.get('/', familyController.getAllFamilies);
+router.get('/all', familyController.getAllFamilies);
 router.post('/create', authenticate, familyController.createFamily);
 router.post('/join', authenticate, familyController.joinFamily);
 

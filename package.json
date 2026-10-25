@@ -1,11 +1,32 @@
 {
   "name": "onepot-family-bank",
   "version": "1.0.0",
+  "private": true,
+  "type": "module",
   "description": "OnePot - One family, one pot = No stories. Family Pooled Wallet and Envelope Budgeting System.",
   "scripts": {
+    "start": "concurrently \"vite\" \"npm --prefix backend run dev\"",
+    "dev": "vite",
     "server": "npm --prefix backend run dev",
     "server:start": "npm --prefix backend start",
+    "build": "vite build",
+    "preview": "vite preview",
     "db:init": "npm --prefix backend run db:init"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "chart.js": "^4.5.1",
+    "lucide-react": "^1.41.0",
+    "react": "^19.2.8",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "concurrently": "^9.2.4",
+    "vite": "^8.2.2"
   },
   "keywords": [
     "onepot",
@@ -17,4 +38,3 @@
   "author": "OnePot Team",
   "license": "ISC"
 }
-

@@ -24,6 +24,7 @@ router.get('/health', (req, res) => {
 // Mount Routes
 router.use('/auth', authRoutes);
 router.use('/family', familyRoutes);
+router.use('/families', familyRoutes);
 router.use('/bowls', bowlsRoutes);
 router.use('/contributions', contributionsRoutes);
 router.use('/expenses', expensesRoutes);

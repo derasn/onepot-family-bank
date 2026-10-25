@@ -397,6 +397,25 @@ async function updateFamilySettings(req, res, next) {
   }
 }
 
+/**
+ * List all available families for signup / dropdown selectors
+ */
+async function getAllFamilies(req, res, next) {
+  try {
+    const families = await query(
+      `SELECT id, id AS family_id, name, name AS family_name, invite_code, currency, pot_balance, emergency_balance, created_at 
+       FROM families ORDER BY id ASC`
+    );
+    return res.json({
+      success: true,
+      families,
+      data: families
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   createFamily,
   joinFamily,
@@ -405,6 +424,7 @@ module.exports = {
   updateMemberRole,
   removeMember,
   regenerateInviteCode,
-  updateFamilySettings
+  updateFamilySettings,
+  getAllFamilies
 };
 
